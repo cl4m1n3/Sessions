@@ -1,0 +1,17 @@
+name: Sessions
+main: redcore\sessions\SessionsManager
+api: 4.0.0
+version: 1.0.0
+author: redcore
+commands:
+  mysessions:
+    description: view all your sessions
+    permission: use.mysessions
+  getsessions:
+    description: view all player sessions
+    permission: use.getsessions
+permissions:
+  use.mysessions:
+    default: true
+  use.getsessions:
+    default: op
