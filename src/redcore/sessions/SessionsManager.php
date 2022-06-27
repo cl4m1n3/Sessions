@@ -95,32 +95,32 @@ class SessionsManager extends PluginBase implements Listener{
 		}
 	}
 	public function getSessionsForm(Player $player)
-    {
+        {
 		if($this->getServer()->getPluginManager()->getPlugin("FormAPI")->isEnabled()){
-    	    $form = $this->getServer()->getPluginManager()->getPlugin("FormAPI")->createCustomForm(function (Player $player, array $data = null){
-    	         if($data === null){
-    	             return true;
-    	         }
-    	     });
-             $cfg = new Config($this->getDataFolder() . "{$this->player}.yml", Config::YAML, array("seconds" => 0, "countsessions" => 0, "joindate" => "null"));
-             $form->setTitle("§8{$this->player} player sessions");
-             if($this->getServer()->getPlayerByPrefix($this->player)->isOnline()){
-             	$status = "§l§aOnline§r";
-             }else{
-             	$status = "§l§cOffline§r";
-             }
-             $form->addLabel("§fTotal sessions: §e{$cfg->get("countsessions")}\n§fThis session: §e{$cfg->get("seconds")} §7(from {$cfg->get("joindate")}) §fsec.\n§fOnline status: {$status}");
-             if($cfg->get("countsessions") > 0){
-                 for($i = $cfg->get("countsessions"); $i >= 1; $i--){
-                   	$form->addLabel($cfg->get($i));
-                 }
-             }else{
-             	$form->addLabel("§cThis player has not finished any session yet.");
-             }
-             $form->sendToPlayer($player);
-             return $form;
-    	}else{
-            $player->sendMessage("§cThe FormAPI plugin is required to work.");
-        }
+			$form = $this->getServer()->getPluginManager()->getPlugin("FormAPI")->createCustomForm(function (Player $player, array $data = null){
+				if($data === null){
+					return true;
+				}
+			});
+			$cfg = new Config($this->getDataFolder() . "{$this->player}.yml", Config::YAML, array("seconds" => 0, "countsessions" => 0, "joindate" => "null"));
+			$form->setTitle("§8{$this->player} player sessions");
+			if($this->getServer()->getPlayerByPrefix($this->player)->isOnline()){
+				$status = "§l§aOnline§r";
+			}else{
+				$status = "§l§cOffline§r";
+			}
+			$form->addLabel("§fTotal sessions: §e{$cfg->get("countsessions")}\n§fThis session: §e{$cfg->get("seconds")} §7(from {$cfg->get("joindate")}) §fsec.\n§fOnline status: {$status}");
+			if($cfg->get("countsessions") > 0){
+				for($i = $cfg->get("countsessions"); $i >= 1; $i--){
+					$form->addLabel($cfg->get($i));
+				}
+			}else{
+				$form->addLabel("§cThis player has not finished any session yet.");
+			}
+			$form->sendToPlayer($player);
+			return $form;
+		}else{
+			$player->sendMessage("§cThe FormAPI plugin is required to work.");
+		}
 	}
 }
