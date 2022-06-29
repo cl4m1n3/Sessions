@@ -104,7 +104,7 @@ class SessionsManager extends PluginBase implements Listener{
     	     });
              $cfg = new Config($this->getDataFolder() . "{$this->player}.yml", Config::YAML, array("seconds" => 0, "countsessions" => 0, "joindate" => "null"));
              $form->setTitle("§8{$this->player} player sessions");
-             if($this->getServer()->getPlayerByPrefix($this->player)->isOnline()){
+             if($this->getServer()->getPlayerByPrefix($this->player)){
              	$status = "§l§aOnline§r";
              }else{
              	$status = "§l§cOffline§r";
